@@ -1,19 +1,16 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-toastify';
+import { StyleSheet, View } from 'react-native';
+import { ToastProvider } from 'react-native-toastify';
+import ToastComponent from './ToastComponent';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <ToastProvider>
+      <View style={styles.container}>
+        <ToastComponent />
+      </View>
+    </ToastProvider>
   );
 }
 
