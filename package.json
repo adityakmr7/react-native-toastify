@@ -33,8 +33,7 @@
     "prepack": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install && yarn example pods",
-    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build"
+    "bootstrap": "yarn example && yarn install"
   },
   "keywords": [
     "react-native",
@@ -42,7 +41,7 @@
     "android"
   ],
   "repository": "https://github.com/adityakmr7/react-native-toastify",
-  "author": "dev-adityakmr <dev.adityakmr@gmail.com> (https://adityakmr.me)",
+  "author": "dev-adityakmr <dev.adityakmr@gmail.com> (https://github.com/adityakmr7)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/adityakmr7/react-native-toastify/issues"
@@ -68,8 +67,8 @@
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
     "react": "18.2.0",
-    "react-native": "0.71.4",
-    "react-native-builder-bob": "^0.20.0",
+    "react-native": "0.71.3",
+    "react-native-builder-bob": "^0.20.4",
     "release-it": "^15.0.0",
     "typescript": "^4.5.2"
   },

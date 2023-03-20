@@ -11,11 +11,11 @@ npm install react-native-toastify
 ## Usage
 
 ```js
-import { ToastifyView } from "react-native-toastify";
+import { multiply } from 'react-native-toastify';
 
 // ...
 
-<ToastifyView color="tomato" />
+const result = await multiply(3, 7);
 ```
 
 ## Contributing
