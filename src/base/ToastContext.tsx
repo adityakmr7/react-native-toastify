@@ -24,9 +24,10 @@ export const ToastContext = createContext<{
 
 interface Props {
   children?: ReactNode;
+  ToastComponent?: React.ElementType;
 }
 
-const ToastProvider = ({ children }: Props) => {
+const ToastProvider = ({ children, ToastComponent }: Props) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [toastMessage, setToastMessage] = useState<string | undefined>('');
   const [isToast, setIsToast] = useState<boolean>(false);
@@ -71,7 +72,11 @@ const ToastProvider = ({ children }: Props) => {
     <ToastContext.Provider value={{ Toast: { showToast } }}>
       {children}
       <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
-        <Toast message={toastMessage} />
+        {ToastComponent ? (
+          <ToastComponent message={toastMessage} />
+        ) : (
+          <Toast message={toastMessage} />
+        )}
       </Animated.View>
     </ToastContext.Provider>
   );
