@@ -1,7 +1,7 @@
 {
-  "name": "react-native-toastify",
-  "version": "0.1.0",
-  "description": "test",
+  "name": "@adityakmr7/react-native-toastify",
+  "version": "0.0.0-beta.1",
+  "description": "Create toast in react native application. ",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
