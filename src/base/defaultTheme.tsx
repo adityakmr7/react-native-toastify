@@ -1,6 +1,6 @@
-import type { ThemeProps } from './interface';
+import type { ToastThemeProps } from './interface';
 
-export const defaultTheme: ThemeProps = {
+export const defaultTheme: ToastThemeProps = {
   error: {
     primary: '#d32f2f',
     secondary: '#fff',

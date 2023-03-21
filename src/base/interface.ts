@@ -10,13 +10,13 @@ export interface ToastContextProps {
   };
 }
 
-export interface ThemeType {
+export interface ToastThemeType {
   primary: string;
   secondary: string;
 }
-export interface ThemeProps {
-  default: ThemeType;
-  error: ThemeType;
-  success: ThemeType;
-  warning: ThemeType;
+export interface ToastThemeProps {
+  default: ToastThemeType;
+  error: ToastThemeType;
+  success: ToastThemeType;
+  warning: ToastThemeType;
 }

@@ -2,7 +2,7 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Dimensions } from 'react-native';
-import type { ThemeProps, ToastType } from '../base/interface';
+import type { ToastThemeProps, ToastType } from '../base/interface';
 import { defaultTheme } from '../base/defaultTheme';
 
 const Toast = ({
@@ -12,7 +12,7 @@ const Toast = ({
 }: {
   message: string | undefined;
   type: ToastType;
-  customTheme?: ThemeProps;
+  customTheme?: ToastThemeProps;
 }) => {
   const theme = customTheme[type];
   return (

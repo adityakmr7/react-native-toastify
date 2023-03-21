@@ -11,7 +11,7 @@ import { StyleSheet } from 'react-native';
 import { Toast } from '../component';
 import type {
   showToastProps,
-  ThemeProps,
+  ToastThemeProps,
   ToastContextProps,
   ToastType,
 } from './interface';
@@ -23,7 +23,7 @@ export const ToastContext = createContext<ToastContextProps>({
 interface Props {
   children?: ReactNode;
   ToastComponent?: React.ElementType;
-  theme?: ThemeProps;
+  theme?: ToastThemeProps;
 }
 
 const ToastProvider = ({ children, ToastComponent, theme }: Props) => {
