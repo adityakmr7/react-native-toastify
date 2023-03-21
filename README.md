@@ -7,7 +7,7 @@ create custom toast
 ## Installation
 
 ```sh
-npm install react-native-toastify
+npm i @adityakmr7/react-native-toastify
 ```
 
 ## Usage
