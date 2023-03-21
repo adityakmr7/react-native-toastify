@@ -9,24 +9,18 @@ import React, {
 import { Animated } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { Toast } from '../component';
+import type { showToastProps, ToastContextProps } from './interface';
 
-export const ToastContext = createContext<{
-  Toast: {
-    showToast: ({
-      message,
-      duration,
-    }: {
-      message?: string;
-      duration?: number;
-    }) => void;
-  };
-}>({ Toast: { showToast: () => {} } });
+export const ToastContext = createContext<ToastContextProps>({
+  Toast: { showToast: () => {} },
+});
 
 interface Props {
   children?: ReactNode;
+  ToastComponent?: React.ElementType;
 }
 
-const ToastProvider = ({ children }: Props) => {
+const ToastProvider = ({ children, ToastComponent }: Props) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [toastMessage, setToastMessage] = useState<string | undefined>('');
   const [isToast, setIsToast] = useState<boolean>(false);
@@ -55,13 +49,7 @@ const ToastProvider = ({ children }: Props) => {
     return () => clearInterval(toasTimer);
   }, [toastDuration]);
 
-  const showToast = ({
-    message,
-    duration = 1000,
-  }: {
-    message?: string;
-    duration?: number;
-  }) => {
+  const showToast = ({ message, duration = 1000 }: showToastProps) => {
     setToastDuration(duration);
     setToastMessage(message);
     setIsToast(true);
@@ -71,7 +59,11 @@ const ToastProvider = ({ children }: Props) => {
     <ToastContext.Provider value={{ Toast: { showToast } }}>
       {children}
       <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
-        <Toast message={toastMessage} />
+        {ToastComponent ? (
+          <ToastComponent message={toastMessage} />
+        ) : (
+          <Toast message={toastMessage} />
+        )}
       </Animated.View>
     </ToastContext.Provider>
   );
