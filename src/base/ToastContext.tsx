@@ -9,18 +9,11 @@ import React, {
 import { Animated } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { Toast } from '../component';
+import type { showToastProps, ToastContextProps } from './interface';
 
-export const ToastContext = createContext<{
-  Toast: {
-    showToast: ({
-      message,
-      duration,
-    }: {
-      message?: string;
-      duration?: number;
-    }) => void;
-  };
-}>({ Toast: { showToast: () => {} } });
+export const ToastContext = createContext<ToastContextProps>({
+  Toast: { showToast: () => {} },
+});
 
 interface Props {
   children?: ReactNode;
@@ -56,13 +49,7 @@ const ToastProvider = ({ children, ToastComponent }: Props) => {
     return () => clearInterval(toasTimer);
   }, [toastDuration]);
 
-  const showToast = ({
-    message,
-    duration = 1000,
-  }: {
-    message?: string;
-    duration?: number;
-  }) => {
+  const showToast = ({ message, duration = 1000 }: showToastProps) => {
     setToastDuration(duration);
     setToastMessage(message);
     setIsToast(true);
