@@ -17,7 +17,7 @@ import { ToastProvider } from 'react-native-toastify';
 
 export default function App() {
   return (
-    <ToastProvider>
+    <ToastProvider ToastComponent={CustomToastComponent} theme={customTheme}>
       // Your App Component
     </ToastProvider>
   );
@@ -32,7 +32,7 @@ const ToastComponent = () => {
   const { Toast } = useToastify();
 
   const handleToast = () => {
-    Toast.showToast({ message: 'Hello world', duration: 3000 });
+    Toast.showToast({ message: 'Hello world', duration: 3000,type:"default" });
   };
 
   return (
