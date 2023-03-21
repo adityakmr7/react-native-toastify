@@ -9,7 +9,12 @@ import React, {
 import { Animated } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { Toast } from '../component';
-import type { showToastProps, ToastContextProps } from './interface';
+import type {
+  showToastProps,
+  ToastThemeProps,
+  ToastContextProps,
+  ToastType,
+} from './interface';
 
 export const ToastContext = createContext<ToastContextProps>({
   Toast: { showToast: () => {} },
@@ -18,14 +23,15 @@ export const ToastContext = createContext<ToastContextProps>({
 interface Props {
   children?: ReactNode;
   ToastComponent?: React.ElementType;
+  theme?: ToastThemeProps;
 }
 
-const ToastProvider = ({ children, ToastComponent }: Props) => {
+const ToastProvider = ({ children, ToastComponent, theme }: Props) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [toastMessage, setToastMessage] = useState<string | undefined>('');
   const [isToast, setIsToast] = useState<boolean>(false);
+  const [toastType, setToastType] = useState<ToastType>('default');
   const [toastDuration, setToastDuration] = useState<number>(1000);
-
   React.useEffect(() => {
     if (isToast) {
       Animated.timing(fadeAnim, {
@@ -49,9 +55,15 @@ const ToastProvider = ({ children, ToastComponent }: Props) => {
     return () => clearInterval(toasTimer);
   }, [toastDuration]);
 
-  const showToast = ({ message, duration = 1000 }: showToastProps) => {
+  const showToast = ({
+    message,
+    duration = 1000,
+    type = 'default',
+  }: showToastProps) => {
+    console.log('gettingCalled');
     setToastDuration(duration);
     setToastMessage(message);
+    setToastType(type);
     setIsToast(true);
   };
 
@@ -62,7 +74,7 @@ const ToastProvider = ({ children, ToastComponent }: Props) => {
         {ToastComponent ? (
           <ToastComponent message={toastMessage} />
         ) : (
-          <Toast message={toastMessage} />
+          <Toast message={toastMessage} type={toastType} customTheme={theme} />
         )}
       </Animated.View>
     </ToastContext.Provider>
