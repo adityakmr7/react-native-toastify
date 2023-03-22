@@ -86,6 +86,9 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'absolute',
     bottom: 40,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
   },
 });
 export const useToastify = () => useContext(ToastContext);
