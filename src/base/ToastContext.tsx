@@ -28,25 +28,40 @@ interface Props {
 
 const ToastProvider = ({ children, ToastComponent, theme }: Props) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const translateYAnim = useRef(new Animated.Value(10)).current;
   const [toastMessage, setToastMessage] = useState<string | undefined>('');
   const [isToast, setIsToast] = useState<boolean>(false);
   const [toastType, setToastType] = useState<ToastType>('default');
   const [toastDuration, setToastDuration] = useState<number>(1000);
   React.useEffect(() => {
     if (isToast) {
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 1000,
-        useNativeDriver: true,
-      }).start();
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateYAnim, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+      ]).start();
     } else if (!isToast) {
-      Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 1000,
-        useNativeDriver: true,
-      }).start();
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateYAnim, {
+          toValue: 10,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+      ]).start();
     }
-  }, [isToast, fadeAnim]);
+  }, [isToast, fadeAnim, translateYAnim]);
 
   useEffect(() => {
     const toasTimer = setInterval(() => {
@@ -60,7 +75,6 @@ const ToastProvider = ({ children, ToastComponent, theme }: Props) => {
     duration = 1000,
     type = 'default',
   }: showToastProps) => {
-    console.log('gettingCalled');
     setToastDuration(duration);
     setToastMessage(message);
     setToastType(type);
@@ -70,7 +84,12 @@ const ToastProvider = ({ children, ToastComponent, theme }: Props) => {
   return (
     <ToastContext.Provider value={{ Toast: { showToast } }}>
       {children}
-      <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
+      <Animated.View
+        style={[
+          styles.container,
+          { opacity: fadeAnim, transform: [{ translateY: translateYAnim }] },
+        ]}
+      >
         {ToastComponent ? (
           <ToastComponent message={toastMessage} />
         ) : (
