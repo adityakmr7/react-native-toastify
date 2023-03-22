@@ -1,7 +1,5 @@
 # react-native-toastify
 
-- This library is not ready yet. We are still working on it to make it stable
-
 create custom toast
 
 ## Installation
