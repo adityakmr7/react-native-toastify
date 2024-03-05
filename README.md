@@ -21,8 +21,12 @@ export default function App() {
     );
 }
 
+```
 
-// ...
+## Usage inside view component
+
+```js
+
 
 import { useToastify } from 'react-native-toastify';
 
@@ -47,6 +51,17 @@ const ToastComponent = () => {
 export default ToastComponent;
 
 ```
+
+## Usage outside view component
+
+```js
+const handleShowToast = () => {
+    Toast.showToast({ message: 'Hello world', duration: 3000, type: "default" });
+}
+```
+
+
+
 
 ## Configuration Props
 
