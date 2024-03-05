@@ -1,10 +1,9 @@
-import { View, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import type { ToastThemeProps, ToastType } from '../base/interface';
 import { defaultTheme } from '../base/defaultTheme';
 
-const Toast = ({
+const ToastView = ({
   message,
   type = 'default',
   customTheme = defaultTheme,
@@ -20,7 +19,8 @@ const Toast = ({
     </View>
   );
 };
-Toast.defaultProps = {
+
+ToastView.defaultProps = {
   message: 'Toast Goes here',
 };
 const styles = StyleSheet.create({
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Toast;
+export default ToastView;

@@ -1,12 +1,17 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { useToastify } from 'react-native-toastify';
+import Toast from '../../src/Toast/Toast';
 
+const handleToastOutside = () => {
+  Toast.showToast({ message: 'Hello world', duration: 3000 });
+};
 const ToastComponent = () => {
-  const { Toast } = useToastify();
+  // const { Toast } = useToastify();
 
   const handleToast = () => {
-    Toast.showToast({ message: 'Hello world', duration: 3000 });
+    handleToastOutside(); // Trigger from outside the component
+    // Trigger from inside the component
+    // Toast.showToast({ message: 'Hello world', duration: 3000 });
   };
 
   return (
