@@ -5,3 +5,4 @@ export type {
   ToastType,
   showToastProps,
 } from './base/interface';
+export { default as Toast } from './Toast/Toast';

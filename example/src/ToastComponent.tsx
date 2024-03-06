@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import Toast from '../../src/Toast/Toast';
+import { Toast } from 'react-native-toastify';
 
 const handleToastOutside = () => {
   Toast.showToast({ message: 'Hello world', duration: 3000 });
