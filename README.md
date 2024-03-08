@@ -97,6 +97,11 @@ export const theme: any = {
 
 ```
 
+
+## EXAMPLE
+
+<img alt="main-example" src="https://raw.githubusercontent.com/adityakmr7/react-native-toastify/main/example/assets/toast-example.gif"/>
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
